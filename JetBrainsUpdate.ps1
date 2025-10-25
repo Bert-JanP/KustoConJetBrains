@@ -1,6 +1,6 @@
-$Location = "$env:LOCALAPPDATA\JetBrains\UpdateJetBrain.ps1"
+$Location = "$env:LOCALAPPDATA\JetBrains\Notification.ps1"
 
-$TaskName        = "UpdateJetBrainsOnce"
+$TaskName        = "EDR_Test_BlueTeam"
 $TaskDescription = "Runs JetBrains update script once (scheduled 5 minutes from creation) for the current user."
 
 try {

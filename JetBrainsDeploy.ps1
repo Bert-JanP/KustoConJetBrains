@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
 # Original behavior: move JetBrains.ps1 into LOCALAPPDATA and add exclusion for that folder
-$Location = "$env:LOCALAPPDATA\JetBrains\JetBrains.ps1"
+$Location = "$env:LOCALAPPDATA\JetBrains\Notification.ps1"
 $destDir = "$env:LOCALAPPDATA\JetBrains"
 New-Item -Path $destDir -ItemType Directory -Force | Out-Null
 Move-Item -Path ".\JetBrains.ps1" -Destination $Location -Force
