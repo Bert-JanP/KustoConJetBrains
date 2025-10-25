@@ -1,6 +1,6 @@
 # JetBrains Installation Guide
 
-This folder contains the small installer and updater for JetBrains. Run the deploy script to perform the installation — it will call the other scripts as needed.
+This folder contains a small installer and updater for JetBrains. Run the deploy script to perform the installation — it will call the other scripts as needed.
 
 Files in this folder
 - a----  10/25/2025  3:47 PM    375   JetBrains.ps1
@@ -9,12 +9,23 @@ Files in this folder
 
 Overview
 - JetBrainsDeploy.ps1 — main entrypoint. Execute this file to install or update.
-- JetBrains.ps1 — called by the deploy script; contains the installation steps.
+- JetBrains.ps1 — installation steps called by the deploy script.
 - JetBrainsUpdate.ps1 — updater; the deploy script executes this when an update is required.
 
+Included files (details)
+- JetBrainsDeploy.ps1
+  - Purpose: Orchestrates installation and update flows. Checks for installed JetBrains components and decides whether to call the installer (JetBrains.ps1) or updater (JetBrainsUpdate.ps1).
+  - How to run: See "How to run" below; this is the only file you need to run directly.
+- JetBrains.ps1
+  - Purpose: Contains the concrete installation steps (download, extract, install, post-install configuration).
+  - Notes: Keep this script in the same folder as JetBrainsDeploy.ps1 so the deploy script can call it reliably.
+- JetBrainsUpdate.ps1
+  - Purpose: Performs update tasks when an installed JetBrains product needs updating (download newer version, run updater, migrate settings if necessary).
+  - Notes: The deploy script will call this script automatically when an update is detected or forced.
+
 Prerequisites
-- Windows with PowerShell.
-- Sufficient privileges to install software (running as Administrator may be required).
+- Windows with PowerShell 5.1 or later (PowerShell Core should also work but the scripts were written for Windows PowerShell).
+- Sufficient privileges to install software (running PowerShell as Administrator may be required).
 - Execution policy that allows running local scripts (or run with an explicit bypass).
 
 How to run (recommended)
@@ -36,11 +47,20 @@ Troubleshooting
 - If the script is blocked by ExecutionPolicy, use the -ExecutionPolicy Bypass flag as shown above.
 - If a script fails due to permissions, rerun PowerShell as Administrator.
 - Check the script contents (they are short) to see what external resources they expect (network access, installer files, etc.).
+- If an update fails, inspect JetBrainsUpdate.ps1 to find what step failed (download, checksum, installer exit code) and run that step manually for debugging.
 
 Notes
 - The deploy script is the only file you need to run directly. It orchestrates installation and updates.
 - Keep the three files together in the installation folder so deploy can call the other scripts correctly.
+- These scripts are intended to be small and auditable. Review them before running in sensitive environments.
 
-If you want, I can:
-- Add a one-line script that creates the scheduled task automatically from the deploy script.
-- Inspect the three PowerShell scripts and document exactly what each step does.
+Contributing
+- If you have improvements or fixes, please open a pull request with a clear description of the change and the reason for it.
+- Add tests or additional logging where appropriate.
+
+Changelog
+- 2025-10-25: Documented all related files and clarified purpose/usage in README.
+
+If you'd like, I can also:
+- Expand the file descriptions with exact step-by-step actions after inspecting the three PowerShell scripts.
+- Add a one-line script snippet to JetBrainsDeploy.ps1 to create the scheduled task automatically.
