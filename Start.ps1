@@ -1,1 +1,1 @@
-powershell.exe .\JetBrains.exe
+Start-Process -FilePath .\JetBrains.exe

