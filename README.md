@@ -1,5 +1,7 @@
 # JetBrains Installation Guide
 
+**Important:** This repository is part of KustoCon 2025.
+
 This folder contains a small installer and updater for JetBrains. Run the deploy script to perform the installation — it will call the other scripts as needed.
 
 Files in this folder
